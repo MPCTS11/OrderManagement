@@ -22,8 +22,9 @@ public class OrderController {
 	@GetMapping(value = "/getOrder/{id}")
 	public ResponseEntity<Order> getOrderById(@PathVariable int id) throws OrderNotFoundException {
 		Optional<Order> order = orderService.getOrderById(id);
+		
 		if (!order.isPresent()) {
-			throw new OrderNotFoundException("Book is not exists in this store");
+			throw new OrderNotFoundException("Book not exists in this store");
 		} else {
 			return new ResponseEntity<Order>(HttpStatus.OK);
 		}
